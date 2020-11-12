@@ -130,9 +130,8 @@ class SmokeTest {
         }
     }
 
-    @Ignore("Flaky test: https://github.com/mozilla-mobile/fenix/issues/12899")
     @Test
-    fun verifyETPToolbarShieldIconIsNotDisplayedIfETPIsOFFGloballyTest() {
+    fun verifyETPShieldNotDisplayedIfOFFGlobally() {
         val defaultWebPage = TestAssetHelper.getGenericAsset(mockWebServer, 1)
 
         homeScreen {
@@ -149,9 +148,8 @@ class SmokeTest {
             }.openSettings {
             }.openEnhancedTrackingProtectionSubMenu {
                 clickEnhancedTrackingProtectionDefaults()
-            }.goBackToHomeScreen {
-            }.openTabDrawer {
-            }.openTab(defaultWebPage.title) {
+            }.goBack {
+            }.goBackToBrowser {
                 clickEnhancedTrackingProtectionPanel()
                 verifyEnhancedTrackingProtectionSwitch()
                 // Turning off TP Switch results in adding the WebPage to exception list
